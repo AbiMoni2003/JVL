@@ -10,7 +10,7 @@ const DATABASE_URL = process.env.DATABASE_URL
 //let todos=[];
 mongoose.connect(DATABASE_URL)
 .then(()=>{
-    console.log('DB connected');
+    console.log('DB connected...');
     
 })
 .catch((err)=>{
