@@ -10,11 +10,11 @@ function Todo() {
     const [editTitle,setEditTitle]=useState('');
     const [editDescription,setEditDescription]=useState('');
 
-    
+    const apiUrl="https://todo-backend-ebon-eight.vercel.app";
     const handleSubmit=()=>{
         setError("");
         if(title.trim() !== '' && description.trim() !== ''){
-            fetch(`${import.meta.env.SERVER_APP_URL}/todos`,{
+            fetch(apiUrl+"/todos",{
                 method:"POST",
                 headers:{
                     'Content-Type':'application/json'
@@ -44,7 +44,7 @@ function Todo() {
     }
   
     const getItems=()=>{
-        fetch(`${import.meta.env.SERVER_APP_URL}/todos`)
+        fetch(apiUrl+"/todos")
         .then((res)=>res.json())
         .then((res)=>{
             setTodos(res)
@@ -56,7 +56,7 @@ function Todo() {
     const handleUpdate=()=>{
         setError("");
         if(editTitle.trim() !== '' && editDescription.trim() !== ''){
-            fetch(`${import.meta.env.SERVER_APP_URL}/todos`+editId,{
+            fetch(apiUrl+"/todos/"+editId,{
                 method:"PUT",
                 headers:{
                     'Content-Type':'application/json'
@@ -92,7 +92,7 @@ function Todo() {
     }
     const handleDelete=(id)=>{
         if(confirm('Are you sure to Delete')){
-            fetch(`${import.meta.env.SERVER_APP_URL}/todos`+id,{
+            fetch(apiUrl+"/todos/"+id,{
                 method:"DELETE"
             }).then(()=>{
                 const updatedTodos = todos.filter((item)=>item._id !== id)
